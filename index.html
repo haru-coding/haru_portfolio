@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — ハル｜コーダー</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+JP:wght@300;400;500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+<!-- ▼ 花びらパーティクル用キャンバス -->
+<canvas id="petal-canvas"></canvas>
+
+<!-- ▼ Header -->
+<header id="header">
+  <a href="#" class="logo">Haru<span>.code</span></a>
+  <nav>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#contact" class="nav-contact">Contact</a></li>
+    </ul>
+  </nav>
+  <button class="burger" id="burger" aria-label="メニューを開く" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ▼ モバイルナビ -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="#about"   onclick="closeMobile()">About</a>
+  <a href="#skills"  onclick="closeMobile()">Skills</a>
+  <a href="#works"   onclick="closeMobile()">Works</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<main>
+
+  <!-- ▼ Hero -->
+  <section id="hero">
+    <div class="hero-text">
+      <p class="hero-tag">Coder</p>
+      <h1 class="hero-name"><em>haru</em></h1>
+      <p class="hero-catch">Web Coder &amp; Portfolio</p>
+      <div class="hero-btns">
+        <a href="#works" class="btn-primary">Works を見る</a>
+        <a href="#about" class="btn-outline">About</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- ▼ SVGミモザ -->
+      <div class="mimosa-wrap" aria-hidden="true">
+        <svg class="mimosa-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <!-- 幹・枝 -->
+          <g class="mimosa-branches" stroke="#b5913a" stroke-linecap="round" fill="none">
+            <!-- メイン幹 -->
+            <path d="M250 480 C248 420 242 370 238 310" stroke-width="5"/>
+            <!-- 左大枝 -->
+            <path d="M238 310 C220 280 190 255 160 230" stroke-width="3.5"/>
+            <!-- 左小枝1 -->
+            <path d="M195 268 C178 255 162 245 148 232" stroke-width="2"/>
+            <!-- 左小枝2 -->
+            <path d="M175 252 C165 238 152 226 138 216" stroke-width="2"/>
+            <!-- 右大枝 -->
+            <path d="M238 310 C255 278 278 252 308 228" stroke-width="3.5"/>
+            <!-- 右小枝1 -->
+            <path d="M272 262 C285 248 298 238 312 226" stroke-width="2"/>
+            <!-- 右小枝2 -->
+            <path d="M292 242 C305 230 316 220 328 212" stroke-width="2"/>
+            <!-- 上枝 -->
+            <path d="M238 310 C236 285 234 258 232 225" stroke-width="3"/>
+            <!-- 上左枝 -->
+            <path d="M234 258 C220 248 205 238 188 224" stroke-width="2"/>
+            <!-- 上右枝 -->
+            <path d="M234 258 C248 244 262 234 278 220" stroke-width="2"/>
+          </g>
+
+          <!-- 花房グループ（小さな丸の集まり） -->
+          <!-- 左大枝の花 -->
+          <g class="mimosa-flowers flower-group-1">
+            <circle cx="156" cy="228" r="7"  fill="#F5C842" opacity="0.95"/>
+            <circle cx="146" cy="220" r="6"  fill="#F7D155" opacity="0.9"/>
+            <circle cx="162" cy="218" r="5"  fill="#F5C842" opacity="0.85"/>
+            <circle cx="138" cy="228" r="6"  fill="#F9DC6A" opacity="0.9"/>
+            <circle cx="150" cy="210" r="5"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="168" cy="226" r="4"  fill="#F7D155" opacity="0.75"/>
+            <circle cx="142" cy="212" r="4"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="132" cy="218" r="5"  fill="#F9DC6A" opacity="0.85"/>
+            <circle cx="156" cy="208" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="172" cy="216" r="3"  fill="#F7D155" opacity="0.7"/>
+          </g>
+
+          <!-- 左小枝1の花 -->
+          <g class="mimosa-flowers flower-group-2">
+            <circle cx="146" cy="230" r="6"  fill="#F5C842" opacity="0.9"/>
+            <circle cx="136" cy="222" r="5"  fill="#F7D155" opacity="0.85"/>
+            <circle cx="152" cy="220" r="4"  fill="#F9DC6A" opacity="0.8"/>
+            <circle cx="128" cy="226" r="5"  fill="#F5C842" opacity="0.85"/>
+            <circle cx="140" cy="214" r="4"  fill="#F7D155" opacity="0.75"/>
+            <circle cx="158" cy="224" r="3"  fill="#F5C842" opacity="0.7"/>
+          </g>
+
+          <!-- 右大枝の花 -->
+          <g class="mimosa-flowers flower-group-3">
+            <circle cx="312" cy="224" r="7"  fill="#F5C842" opacity="0.95"/>
+            <circle cx="322" cy="216" r="6"  fill="#F9DC6A" opacity="0.9"/>
+            <circle cx="306" cy="214" r="5"  fill="#F5C842" opacity="0.85"/>
+            <circle cx="330" cy="224" r="6"  fill="#F7D155" opacity="0.9"/>
+            <circle cx="318" cy="206" r="5"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="300" cy="220" r="4"  fill="#F9DC6A" opacity="0.75"/>
+            <circle cx="326" cy="208" r="4"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="336" cy="216" r="5"  fill="#F7D155" opacity="0.85"/>
+            <circle cx="310" cy="206" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="296" cy="212" r="3"  fill="#F9DC6A" opacity="0.7"/>
+          </g>
+
+          <!-- 右小枝1の花 -->
+          <g class="mimosa-flowers flower-group-4">
+            <circle cx="316" cy="222" r="6"  fill="#F5C842" opacity="0.9"/>
+            <circle cx="326" cy="214" r="5"  fill="#F7D155" opacity="0.85"/>
+            <circle cx="308" cy="212" r="4"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="334" cy="220" r="5"  fill="#F9DC6A" opacity="0.85"/>
+            <circle cx="322" cy="206" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="302" cy="216" r="3"  fill="#F7D155" opacity="0.7"/>
+          </g>
+
+          <!-- 上枝の花 -->
+          <g class="mimosa-flowers flower-group-5">
+            <circle cx="230" cy="222" r="7"  fill="#F5C842" opacity="0.95"/>
+            <circle cx="220" cy="214" r="6"  fill="#F7D155" opacity="0.9"/>
+            <circle cx="240" cy="214" r="5"  fill="#F5C842" opacity="0.85"/>
+            <circle cx="214" cy="222" r="5"  fill="#F9DC6A" opacity="0.85"/>
+            <circle cx="246" cy="222" r="5"  fill="#F5C842" opacity="0.85"/>
+            <circle cx="226" cy="206" r="5"  fill="#F7D155" opacity="0.8"/>
+            <circle cx="236" cy="206" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="208" cy="214" r="4"  fill="#F9DC6A" opacity="0.75"/>
+            <circle cx="250" cy="214" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="218" cy="206" r="3"  fill="#F7D155" opacity="0.7"/>
+            <circle cx="244" cy="206" r="3"  fill="#F5C842" opacity="0.7"/>
+          </g>
+
+          <!-- 上左枝の花 -->
+          <g class="mimosa-flowers flower-group-6">
+            <circle cx="186" cy="222" r="6"  fill="#F5C842" opacity="0.9"/>
+            <circle cx="176" cy="215" r="5"  fill="#F7D155" opacity="0.85"/>
+            <circle cx="194" cy="214" r="4"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="168" cy="220" r="5"  fill="#F9DC6A" opacity="0.85"/>
+            <circle cx="182" cy="208" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="200" cy="220" r="3"  fill="#F7D155" opacity="0.7"/>
+          </g>
+
+          <!-- 上右枝の花 -->
+          <g class="mimosa-flowers flower-group-7">
+            <circle cx="280" cy="218" r="6"  fill="#F5C842" opacity="0.9"/>
+            <circle cx="290" cy="210" r="5"  fill="#F9DC6A" opacity="0.85"/>
+            <circle cx="272" cy="212" r="4"  fill="#F5C842" opacity="0.8"/>
+            <circle cx="298" cy="218" r="5"  fill="#F7D155" opacity="0.85"/>
+            <circle cx="284" cy="204" r="4"  fill="#F5C842" opacity="0.75"/>
+            <circle cx="264" cy="216" r="3"  fill="#F9DC6A" opacity="0.7"/>
+          </g>
+
+          <!-- 葉（細長い楕円） -->
+          <g class="mimosa-leaves" fill="#8db87a" opacity="0.7">
+            <ellipse cx="176" cy="244" rx="14" ry="4" transform="rotate(-30 176 244)"/>
+            <ellipse cx="158" cy="248" rx="12" ry="3.5" transform="rotate(-45 158 248)"/>
+            <ellipse cx="298" cy="240" rx="14" ry="4" transform="rotate(30 298 240)"/>
+            <ellipse cx="316" cy="244" rx="12" ry="3.5" transform="rotate(45 316 244)"/>
+            <ellipse cx="220" cy="238" rx="13" ry="3.5" transform="rotate(-15 220 238)"/>
+            <ellipse cx="252" cy="238" rx="13" ry="3.5" transform="rotate(15 252 238)"/>
+            <ellipse cx="192" cy="232" rx="11" ry="3" transform="rotate(-40 192 232)"/>
+            <ellipse cx="278" cy="232" rx="11" ry="3" transform="rotate(40 278 232)"/>
+          </g>
+        </svg>
+
+        <!-- バッジ -->
+        <div class="badge badge-1">
+          <span class="badge-dot"></span>HTML / CSS
+        </div>
+        <div class="badge badge-2">
+          <span class="badge-dot blue"></span>Responsive Design
+        </div>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      Scroll
+      <div class="scroll-hint-line"></div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ▼ About -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal-left">
+          <div class="about-img">
+            <!-- ▼ イラスト画像をここに入れてください -->
+            <img src="./img/haru.png" alt="ハルのイラスト">
+          </div>
+          <div class="about-img-deco"></div>
+          <div class="about-img-deco2"></div>
+        </div>
+        <div class="about-text reveal-right">
+          <p class="section-label">About</p>
+          <h2 class="section-title">Hello, I'm<br><em>ハル</em></h2>
+          <p class="section-sub">コーダー</p>
+          <p class="about-body">
+            はじめまして！コーダーのハルです。<br>
+            デザインカンプからのコーディングを中心に、レスポンシブ対応やアニメーション実装を得意としています。<br>
+            AdobeソフトやFigmaの操作もできるので、デザインの意図を正確に読み取った実装が得意です。
+          </p>
+          <div class="about-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag blue">Adobe</span>
+            <span class="tag blue">Figma</span>
+            <span class="tag blue">Responsive</span>
+          </div>
+          <a href="#contact" class="btn-primary">お問い合わせ</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ▼ Skills -->
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-label reveal">Skills</p>
+      <h2 class="section-title reveal">使えるスキル</h2>
+      <p class="section-sub reveal">日々学習中のスキルセットです</p>
+      <div class="skills-grid">
+        <div class="skill-card reveal">
+          <div class="skill-icon yellow">🎨</div>
+          <h3>Adobe Tools</h3>
+          <div class="skill-items">
+            <span class="skill-pill">Illustrator</span>
+            <span class="skill-pill">Photoshop</span>
+            <span class="skill-pill">Figma</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon yellow">💻</div>
+          <h3>Coding</h3>
+          <div class="skill-items">
+            <span class="skill-pill b">HTML5</span>
+            <span class="skill-pill b">CSS3</span>
+            <span class="skill-pill b">JavaScript</span>
+            <span class="skill-pill b">jQuery</span>
+          </div>
+        </div>
+        <div class="skill-card reveal">
+          <div class="skill-icon blue">🌐</div>
+          <h3>Tools &amp; Others</h3>
+          <div class="skill-items">
+            <span class="skill-pill">VS Code</span>
+            <span class="skill-pill">Git</span>
+            <span class="skill-pill b">Responsive</span>
+            <span class="skill-pill b">Animation</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ▼ Works -->
+  <section id="works">
+    <div class="section-inner">
+      <p class="section-label reveal">Works</p>
+      <h2 class="section-title reveal">制作実績</h2>
+      <p class="section-sub reveal">これまでに制作したサイトの一部です</p>
+      <div class="works-grid">
+
+        <div class="work-card reveal">
+          <div class="work-thumb">
+            <img src="./img/logistics-corporate-site.png" alt="物流会社 コーポレートサイト">
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag">Photoshop</span>
+              <span class="work-tag">HTML/CSS</span>
+              <span class="work-tag">Responsive</span>
+            </div>
+            <h3>物流会社 コーポレートサイト</h3>
+            <p>Photoshopデザインカンプをもとにコーディングを実装しました。<br>
+視認性を高めるために余白やレイアウトを整理し、直感的に情報を把握できる構成にしています。レスポンシブ対応を行い、スマートフォンでも快適に閲覧できるよう調整しました。<br>
+※デザインはAmot Design様のカンプを使用し、コーディングを担当しています。</p>
+            <a href="https://haru-coding.github.io/logistics-corporate-site/" class="work-link">詳しく見る</a>
+          </div>
+        </div>
+
+        <div class="work-card reveal">
+          <div class="work-thumb">
+                        <img src="./img/sweet-shop-site.png" alt="仮想スイーツショップ">
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag">Figma</span>
+              <span class="work-tag">HTML/CSS</span>
+              <span class="work-tag">Responsive</span>
+            </div>
+            <h3>仮想スイーツショップ</h3>
+            <p>Figmaデザインカンプをもとにコーディングを実装しました。<br>スイーツショップのWebサイトを想定し、世界観を活かしたレイアウトと視認性を意識して実装しています。
+レスポンシブ対応やスライダーなどの動きのある実装も行いました。</p>
+            <a href="https://haru-coding.github.io/sweet-shop-site/" class="work-link">詳しく見る</a>
+          </div>
+        </div>
+
+        <div class="work-card reveal">
+          <div class="work-thumb">
+                        <img src="./img/CARINO Wedding.png" alt="結婚式場サイト">
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag">Figma</span>
+              <span class="work-tag">HTML/CSS</span>
+              <span class="work-tag">Wordpress</span>
+              <span class="work-tag">Responsive</span>
+            </div>
+            <h3>CARINO Wedding（結婚式場サイト / WordPress）</h3>
+            <p>制作物の説明がここに入ります。使用技術や制作のポイントを記載しましょう。</p>
+            <a href="https://wedding.hareniti.com/" class="work-link">詳しく見る</a>
+          </div>
+        </div>
+
+        <!-- <div class="work-card reveal">
+          <div class="work-thumb">
+            <div class="work-thumb-inner wt4">✨</div>
+          </div>
+          <div class="work-body">
+            <div class="work-tags">
+              <span class="work-tag">Figma</span>
+              <span class="work-tag">Design</span>
+            </div>
+            <h3>サンプルサイト 04</h3>
+            <p>制作物の説明がここに入ります。使用技術や制作のポイントを記載しましょう。</p>
+            <a href="#" class="work-link">詳しく見る</a>
+          </div>
+        </div> -->
+
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ▼ Contact -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-wrap">
+        <p class="section-label reveal">Contact</p>
+        <h2 class="section-title reveal">お問い合わせ</h2>
+        <p class="section-sub reveal">お仕事のご依頼・ご相談はお気軽にどうぞ ✉️</p>
+        <form class="contact-form reveal"
+        action="https://formspree.io/f/xbdqnelb"
+        method="post">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">お名前</label>
+              <input type="text" id="name" placeholder="山田 花子">
+            </div>
+            <div class="form-group">
+              <label for="email">メールアドレス</label>
+              <input type="email" id="email" placeholder="your@email.com">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="subject">件名</label>
+            <input type="text" id="subject" placeholder="お問い合わせ件名">
+          </div>
+          <div class="form-group">
+            <label for="message">メッセージ</label>
+            <textarea id="message" placeholder="メッセージをご記入ください"></textarea>
+          </div>
+          <button type="submit" class="form-submit">送信する</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ▼ Footer -->
+<footer>
+  <div class="footer-logo">Haru<span>.code</span></div>
+  <nav class="footer-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#works">Works</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <small>&copy; 2025 ハル｜コーダー. All Rights Reserved.</small>
+</footer>
+
+<script src="./js/script.js"></script>
+</body>
+</html>
